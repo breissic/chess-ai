@@ -8,7 +8,7 @@ import cairosvg
 import io
 from PIL import Image
 
-IS_BOT = True  # Set to False for human vs bot, True for bot vs bot
+IS_BOT = False  # Set to False for human vs bot, True for bot vs bot
 
 class ChessGame:
     def __init__(self):
@@ -19,7 +19,7 @@ class ChessGame:
             self.white_player = ChessBot()
             self.black_player = ChessBot()
         else:
-            self.white_player = HumanPlayer(chess.WHITE)
+            self.white_player = HumanPlayer(chess.WHITE, self)
             self.black_player = ChessBot()
         
         # Initialize Pygame
@@ -38,12 +38,20 @@ class ChessGame:
         data = image.tobytes()
         return pygame.image.fromstring(data, size, mode)
 
-    def display_board(self, last_move=None):
+    def display_board(self, last_move=None, selected_square=None):
         """Display the current board state"""
-        # Create SVG with highlighted last move if exists
+        # Build highlight dictionary for the selected square
+        highlight_squares = None
+        if selected_square is not None:
+            highlight_squares = {
+                selected_square: {"fill": "#FFFF00", "stroke": "none"}
+            }
+
+        # Create SVG with highlighted last move and selected square
         svg = chess.svg.board(
             board=self.board.get_board_state(),
             lastmove=last_move,
+            squares=highlight_squares,     # colored square highlight
             size=self.WINDOW_SIZE
         )
         
@@ -57,8 +65,12 @@ class ChessGame:
         last_move = None
         
         while not self.board.is_game_over():
-            # Display current board
-            self.display_board(last_move)
+            # Get current player for selected square highlighting
+            current_player = self.white_player if self.board.get_board_state().turn else self.black_player
+            selected_square = getattr(current_player, 'selected_square', None)
+            
+            # Display current board with highlights
+            self.display_board(last_move, selected_square)
             
             # Determine current player
             current_player = self.white_player if self.board.get_board_state().turn else self.black_player
