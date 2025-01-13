@@ -1,4 +1,3 @@
-# game.py
 import chess
 import chess.svg
 from board import ChessBoard
@@ -9,7 +8,7 @@ import cairosvg
 import io
 from PIL import Image
 
-IS_BOT = False  # Set to False for human vs bot, True for bot vs bot
+IS_BOT = True  # Set to False for human vs bot, True for bot vs bot
 
 class ChessGame:
     def __init__(self):
