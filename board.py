@@ -34,3 +34,7 @@ class ChessBoard:
         if self.is_game_over():
             return self.board.outcome()
         return None
+
+    def undo_move(self):
+        """Undoes the last move made."""
+        return self.board.pop()

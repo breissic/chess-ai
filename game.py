@@ -98,6 +98,7 @@ class ChessGame:
         self.display_board(last_move)
         result = self.board.get_result()
         print(f"Game Over! Result: {result}")
+
         
         # Keep window open until closed
         while True:
