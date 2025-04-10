@@ -1,0 +1,31 @@
+{
+  "performance_history": [
+    {
+      "iteration": 2,
+      "timestamp": 1744319348.7355287,
+      "metrics": {
+        "bot1_wins": 7,
+        "bot2_wins": 10,
+        "draws": 3,
+        "bot1_win_rate": 0.35,
+        "bot2_win_rate": 0.5,
+        "draw_rate": 0.15,
+        "avg_game_length": 55.0
+      }
+    },
+    {
+      "iteration": 3,
+      "timestamp": 1744321172.0255797,
+      "metrics": {
+        "bot1_wins": 5,
+        "bot2_wins": 9,
+        "draws": 6,
+        "bot1_win_rate": 0.25,
+        "bot2_win_rate": 0.45,
+        "draw_rate": 0.3,
+        "avg_game_length": 56.65
+      }
+    }
+  ],
+  "game_history": []
+}

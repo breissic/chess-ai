@@ -1,0 +1,39 @@
+# CHESS BOT COMMANDS
+
+## PLAY AGAINST A BOT
+# Play as white against a bot
+python game.py --black-bot improved_chess_bot_params.json
+
+# Play as black against a bot
+python game.py --play-as-black --white-bot improved_chess_bot_params.json
+
+## TRAINING COMMANDS
+# Start new training from scratch (default bot)
+python train_bot.py --games 20 --iterations 30 --output chess_bot
+
+# Start training from an existing parameter file <--- Don't use unless you know what you're doing
+python train_bot.py --games 20 --iterations 30 --output improved_chess_bot --load fixed_bot_params.json
+
+# Resume interrupted training (automatically detects last iteration)
+python train_bot.py --games 20 --iterations 30 --output improved_chess_bot --load improved_chess_bot_params.json
+
+# Resume from specific iteration
+python train_bot.py --games 20 --iterations 30 --output improved_chess_bot --load improved_chess_bot_params.json --start-iteration 10
+
+## WATCH BOTS PLAY
+# Make two bots play against each other (useful for testing)
+python game.py --bot-vs-bot --white-bot trained_bot_params.json --black-bot fixed_bot_params.json
+
+## TESTING AND EVALUATION
+# Test bots against each other in multiple games
+python bot_vs_bot.py --white improved_chess_bot_params.json --black fixed_bot_params.json --games 10
+
+# Display loaded bot parameters
+python load_bot.py --params improved_chess_bot_params.json
+
+## NOTES
+# You can safely interrupt training with CTRL+C
+# Training will complete the current iteration and save checkpoints
+# Use the appropriate resume command to continue
+
+   
